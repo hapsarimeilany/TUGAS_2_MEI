@@ -1,6 +1,9 @@
 1. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
 
+    ![Client Request Bagan](https://github.com/hapsarimeilany/TUGAS_2_MEI/blob/main/katalog/RequestClientBagan.png)
+
     Pada urls.py terjadi proses mapping untuk mengarahkan request dari HTTP ke tampilan(view) yang sesuai berdasarkan pemetaan URL tersebut. Selain itu, URL mapper dapat melakukan pencocokan pola string atau angka tertentu yang muncul di URL kemudian meneruskannya ke fungsi view yang ada pada views.py sebagai data. 
+
     views.py mengandung fungsi pengendali permintaan. Ia menerima permintaan dan mengembalikan respon HTTP. views.py akan mengakses data-data yang diperlukannya untuk memenuhi permintaan melalui model yang ada pada models.py kemudian mendelegasikan formatting respons ke dalam berkas html. models.py merupakan obyek python yang mendefinisikan struktur data aplikasi dan menyediakan mekanisme untuk mengelola dan meminta catatan html. Di dalam berkas html terdapat file teks yang mendefinisikan struktur dan tata letak dengan placeheader guna mewakili konten aktual. 
 
 2. Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
@@ -10,7 +13,8 @@
 
 3. Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas!
 Yang saya lakukan untuk mengimplementasikan poin 1 sampai 4 adalah sebagai berikut:
-A. Permulaan
+
+    A. Permulaan
     1. Mengunjungi https://github.com/pbp-fasilkom-ui/assignment-repository untuk menggunakan template yang telah disediakan.
     2. Memasukkan nama repositori sesuai keinginan saya serta memastikan repositori saya bersifat public. Dalam hal ini saya menamai repositori saya "TUGAS_2_MEI".
     3. Clone repositori yang dibuat pada langkah 2 ke komputer dengan peritah "git clone https://github.com/hapsarimeilany/TUGAS_2_MEI.git"
@@ -19,7 +23,7 @@ A. Permulaan
     6. Menginstall dependencies yang diperlukan untuk menjalankan proyek Django dengan perintah "pip install -r requirements.txt".
     7. Mencoba menjalankan proyek Django yang telah dibuat dengan perintah "python manage.py runserver" dan membuka http://localhost:8000 untuk memastikan proyek Django yang saya buat telah berjalan dengan baik.
 
-B. Membuat Aplikasi Django beserta Konfigurasi Model
+    B. Membuat Aplikasi Django beserta Konfigurasi Model
     1. Membuat django-app bernama katalog dengan perintah python manage.py startapp katalog. Namun, django-app tersebut telah dibuat dan tersedia di dalam template yang diberikan.
     2. Membuka settings.py di folder project_django dan menambahkan aplikasi katalog ke dalam variabel INSTALLED_APPS untuk mendaftarkan django-app yang sudah dibuat ke dalam proyek Django.
     3. Membuka file models.py yang ada di folder katalog dan menambahkan potongan kode berikut:
@@ -34,7 +38,7 @@ B. Membuat Aplikasi Django beserta Konfigurasi Model
     4. Menjalankan perintah python manage.py makemigrations di cmd untuk mempersiapkan skema model ke dalam database Django lokal.
     5. Menjalankan perintah python manage.py migrate untuk menerapkan skema model yang telah dibuat ke dalam database Django lokal.
     6. Membuat folder bernama fixture di dalam folder aplikasi katalog dan membuat sebuah berkas bernama initial_katalog_data.json yang berisi kode berikut:
-        [
+        ```[
             {
                 "model": "katalog.catalogitem",
                 "pk": 1,
@@ -95,15 +99,18 @@ B. Membuat Aplikasi Django beserta Konfigurasi Model
                     "item_url": "https://www.tokopedia.com/tokobaruofficial/apple-airpods-3-mme73id-a-garansi-resmi-ibox"
                 }
             }
-        ]
+        ]```
 
     7. Menjalankan perintah python manage.py loaddata initial_katalog_data.json untuk memasukkan data tersebut ke dalam database Django lokal.
 
 C. Implementasi Views Dasar
-    1. Membuka views.py yang terletak di dalam folder katalog dan membuat sebuah fungsi yang menerima parameter request seperti berikut:
-        def show_katalog(request):
+1. Membuka views.py yang terletak di dalam folder katalog dan membuat sebuah fungsi yang menerima parameter request seperti berikut:      
+
+       def show_katalog(request):
             return render(request, "katalog.html")
-    2. Membuat folder bernama templates di dalam folder aplikasi katalog dan membuat sebuah berkas dengan nama katalog.html. Isi dari katalog.html yaitu sebagai berikut:
+
+2. Membuat folder bernama templates di dalam folder aplikasi katalog dan membuat sebuah berkas dengan nama katalog.html. Isi dari katalog.html yaitu sebagai berikut:
+
         {% extends 'base.html' %}
 
         {% block content %}
@@ -154,27 +161,35 @@ C. Implementasi Views Dasar
 
         </body>
         </html>
-    3. Membuat sebuah berkas di dalam folder aplikasi katalog dengan nama urls.py untuk menjalankan proses routing kepada fungsi views sehingga halaman HTML dapat terlihat di browser. 
-        from django.urls import path
-        from katalog.views import show_katalog
+3. Membuat sebuah berkas di dalam folder aplikasi katalog dengan nama urls.py untuk menjalankan proses routing kepada fungsi views sehingga halaman HTML dapat terlihat di browser. 
+        
+       from django.urls import path
+       from katalog.views import show_katalog
 
-        app_name = 'katalog'
+       app_name = 'katalog'
 
-        urlpatterns = [
-            path('', show_katalog, name='show_katalog'),
-        ]
-    4. Mendaftarkan aplikasi katalog ke urls.py yang ada di folder project_django dengan menambahkan kode berikut ke variabel urlpatterns:
+       urlpatterns = [
+           path('', show_katalog, name='show_katalog'),
+       ]
+
+4. Mendaftarkan aplikasi katalog ke urls.py yang ada di folder project_django dengan menambahkan kode berikut ke variabel urlpatterns:
+
         ...
         path('katalog/', include('katalog.urls')),
         ...
-    5. Menjalankan proyek django dengan perintah "python manage.py runserver" dan melihat halaman yang telah dibuat pada browser dengan membuka http://localhost:8000/wishlist/ 
+
+5. Menjalankan proyek django dengan perintah "python manage.py runserver" dan melihat halaman yang telah dibuat pada browser dengan membuka `http://localhost:8000/wishlist/ `
+
 
 D. Menghubungkan Models dengan Views dan Template
-    1. Mengimport models yang sudah dibuat sebelumnya pada fungsi views yaitu di dalam file views.py:
+1. Mengimport models yang sudah dibuat sebelumnya pada fungsi views yaitu di dalam file views.py:
+
         from django.shortcuts import render
         from katalog.models import CatalogItem
         ...
-    2. Menambahkan potongan kode ke dalam fungsi show_katalog serta menambahkan "context" sebagai parameter ketiga pada return fungsi render:
+
+2. Menambahkan potongan kode ke dalam fungsi show_katalog serta menambahkan "context" sebagai parameter ketiga pada return fungsi render:
+
         data_barang_katalog = CatalogItem.objects.all()
             context = {
             'list_barang': data_barang_katalog,
@@ -184,9 +199,10 @@ D. Menghubungkan Models dengan Views dan Template
             return render(request, "katalog.html", context)
 
 E. Mapping Data Untuk Memunculkan Fungsi views di HTML
-    1. Membuka file HTML pada folder templates di dalam direktori katalog.
-    2. Mengubah "Fill me!" dengan "{{nama}}" 
-    3. Melakukan iterasi terhadap variabel list_barang yang telah dirender ke dalam HTML:
+1. Membuka file HTML pada folder templates di dalam direktori katalog.
+2. Mengubah "Fill me!" dengan "{{nama}}" 
+3. Melakukan iterasi terhadap variabel list_barang yang telah dirender ke dalam HTML:
+
         {% comment %} Add the data below this line {% endcomment %}
         {% for barang in list_barang %}
             <tr>
@@ -198,19 +214,24 @@ E. Mapping Data Untuk Memunculkan Fungsi views di HTML
                 <th><a href="{{barang.item_url}}">{{barang.item_url}}</a></th>
             </tr>
         {% endfor %}
-    4. Melakukan add, commit, dan push perubahan yang saya lakukan setelah memastikan halaman web berhasil menampilkan data yang dimasukkan ke dalam views.
+
+4. Melakukan add, commit, dan push perubahan yang saya lakukan setelah memastikan halaman web berhasil menampilkan data yang dimasukkan ke dalam views.
+
 
 F. Deployment Aplikasi ke Heroku
-    1. Membuat aplikasi bernama "katalogmeii" di Heroku
-    2. Menyalin API key akun saya pada aplikasi Heroku
-    3. Membuka Secrets pada repositori GitHub untuk GitHub Actions
-    4. Menambah repositori secret untuk melakukan deployment dengan memasukan nama aplikasi yang dibuat dan API key yang telah disalin:
+1. Membuat aplikasi bernama "katalogmeii" di Heroku
+2. Menyalin API key akun saya pada aplikasi Heroku
+3. Membuka Secrets pada repositori GitHub untuk GitHub Actions
+4. Menambah repositori secret untuk melakukan deployment dengan memasukan nama aplikasi yang dibuat dan API key yang telah disalin:
+
         (NAM)HEROKU_APP_NAME
         (VALUE)APLIKASI-SAYA
-    5. Menjalankan kembali workflow yang gagal pada GitHub Actions.
-    6. Deployment sukses dan aplikasi berhasil dibuat. Dapat dikunjungi pada https://katalogmeii.herokuapp.com . Untuk melihat isi katalog dapat mengunjungi https://katalogmeii.herokuapp.com/katalog/ 
+
+5. Menjalankan kembali workflow yang gagal pada GitHub Actions.
+6. Deployment sukses dan aplikasi berhasil dibuat. Dapat dikunjungi pada https://katalogmeii.herokuapp.com . Untuk melihat isi katalog dapat mengunjungi https://katalogmeii.herokuapp.com/katalog/ 
 
 
 
-REFERENSI CODE: 
+#### REFERENSI CODE:
+
 https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro
