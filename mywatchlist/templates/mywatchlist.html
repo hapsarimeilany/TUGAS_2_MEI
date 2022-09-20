@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<h1>Tugas 3 PBP</h1>
 <h4>Nama: </h4>
 <p>{{nama}}</p>
 <h4>Student ID: </h4>
@@ -16,6 +18,7 @@
             <th>Review</th>
         </tr>
     </thead>
+
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for film in list_film %}
     <tr>
@@ -27,5 +30,17 @@
     </tr>
     {% endfor %}
 </table>
+
+<html>
+<head>
+    <title>Text alignment</title>
+    <style>
+        h2{text-align: center;}
+    </style>
+</head>
+<body>
+    <h2>Selamat, kamu sudah banyak menonton!</h2>
+</body>
+</html>
 
 {% endblock content %}
