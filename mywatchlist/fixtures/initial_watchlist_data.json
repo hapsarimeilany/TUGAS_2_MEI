@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.watchlist",
+        "pk":1,
+        "fields":{
+            "title":"KKN di Desa Penari",
+            "watched":"Watched",
+            "rating": "4",
+	        "release_date": "30 April 2022",
+	        "review": "Menceritakan tentang 6 orang mahasiswa yang sedang KKN di desa yang dahulunya merupakan desa penari." 
+        }
+},
+{
+        "model":"mywatchlist.watchlist",
+        "pk":2,
+        "fields":{
+            "title":"Laskar Pelangi",
+            "watched":"Watched",
+            "rating": "5",
+	        "release_date": "25 September 2008",
+	        "review": "Menceritakan kehidupan anak-anak di Pulau Belitung tahun 1970-an yang berjuang dalam pendidikan di tengah kesulitan ekonomi yang dialami." 
+        }
+},
+{
+        "model":"mywatchlist.watchlist",
+        "pk":3,
+        "fields":{
+            "title":"Cek Toko Sebelah",
+            "watched":"Watched",
+            "rating": "5",
+	        "release_date": "28 Desember 2016",
+	        "review": "Menceritakan seorang anak laki-laki lulusan luar negeri dari keluarga Chinese yang diminta oleh sang ayah untuk meneruskan usaha toko kelontongnya."
+        }
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":4,
+        "fields":{
+            "title":"Miracle in Cell No. 7",
+            "watched":"Not watched",
+            "rating": "5",
+	        "release_date": "8 September 2022",
+	        "review": "Menceritakan seorang pria dengan keterbatasan mental yang terpaksa harus meninggalkan anak perempuannya yang masih kecil karena dituduh melakukan kejahatan."
+        }
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":5,
+        "fields":{
+            "title":"Pengabdi Setan 2",
+            "watched":"Not watched",
+            "rating": "4",
+	        "release_date": "4 Agustus 2022",
+	        "review": "Menceritakan kelanjutan kisah Rini dan keluarga yang bertahan hidup setelah selamat dari teror Ibu pada Pengabdi Setan 1."
+        }
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":6,
+        "fields":{
+            "title":"Our Beloved Summer",
+            "watched":"Watched",
+            "rating": "5",
+	        "release_date": "6 Desember 2021",
+	        "review": "Menceritakan cerita romantis komedi sepasang mantan kekasih yang dipertemukan kembali setelah 10 tahun berpisah."
+        }
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":7,
+        "fields":{
+            "title":"Hi Bye, Mama",
+            "watched":"Watched",
+            "rating": "5",
+	        "release_date": "28 Februari 2020",
+	        "review": "Menceritakan Cha Yu Ri, seorang perempuan hamil yang meninggal dunia akibat kecelakaan mobil kemudian menjadi arwah yang hidup kembali untuk bertemu dengan anaknya."
+	}
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":8,
+        "fields":{
+            "title":"Start Up",
+            "watched":"Not watched",
+            "rating": "4",
+	        "release_date": "17 Oktober 2020",
+	        "review": "Menceritakan kisah perjalanan orang-orang yang merintis usaha di perusahaan Start Up."
+	}
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":9,
+        "fields":{
+            "title":"Penyalin Cahaya",
+            "watched":"Watched",
+            "rating": "4",
+	        "release_date": "8 Oktober 2021",
+	        "review": "Menceritakan perjuangan Sur (Shenina Cinnamon) yang mencari keadilan atas kasus penyebaran foto dirinya saat mabuk sehingga ia kehilangan beasiswa pendidikannya."
+	}
+},
+{
+	"model":"mywatchlist.watchlist",
+        "pk":10,
+        "fields":{
+            "title":"Descendants of The Sun",
+            "watched":"Watched",
+            "rating": "5",
+	        "release_date": "24 Februari 2016",
+	        "review": "Menceritakan kisah cinta seorang tentara yang diperankan oleh Song Joong Ki dengan seorang tenaga medis yang diperankan Song Hye Kyo."
+	}
+}
+]

@@ -8,5 +8,5 @@ def show_katalog(request):
     'list_barang': data_barang_katalog,
     'nama': 'Meilany',
     'NPM' : '2106751436'
-}
+    }
     return render(request, "katalog.html", context)
