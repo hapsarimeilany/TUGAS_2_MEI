@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from katalog.models import CatalogItem
+from mywatchlist.models import WatchList
+
 
 # TODO: Create your views here.
 def show_katalog(request):
@@ -10,3 +12,4 @@ def show_katalog(request):
     'NPM' : '2106751436'
     }
     return render(request, "katalog.html", context)
+
