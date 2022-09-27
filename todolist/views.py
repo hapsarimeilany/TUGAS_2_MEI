@@ -15,9 +15,11 @@ from django.contrib.auth.decorators import login_required
 
 def show_todolist(request):
     todo_items = Task.objects.all()
+    user = request.user
+    
     data = {
         'todo_items': todo_items,
-        'nama': 'Meilany'
+        'nama': user
     }
     return render(request, "todolist.html", data)
 
