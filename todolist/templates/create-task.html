@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Buat Task Baru</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "create-task">
+    <h3>Add new Task</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="title">Task: </label>
+            <input id="judul" type="text" name="title" placeholder="write your task" required>
+        </div>
+
+        <p></p>
+        <div>
+            <label for="description">Description: </label>
+            <input id="description" type="text" name="description" placeholder="describe your task" required>
+        </div>
+
+        <p></p>
+        <input type="submit" value="Tambahkan Task Baru">
+    </form>
+</div>
+{% endblock content %}
