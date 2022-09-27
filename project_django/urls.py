@@ -1,3 +1,5 @@
+
+
 """project_django URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,6 +23,7 @@ urlpatterns = [
     path('', include('example_app.urls')),
     path('katalog/', include('katalog.urls')),
     path('mywatchlist/', include('mywatchlist.urls')),
+    path('todolist/', include('todolist.urls')),
 ]
 
 # TODO: Implement Routings Here

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Buat Task Baru</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "create-task">
+    
+    <h1>Buat Task Baru</h1>  
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td>Judul Tugas: </td>
+                    <td><input type="text" name="title" placeholder="Task" class="form-control"></td>  
+                </tr>  
+
+                <tr>  
+                    <td>Deskripsi: </td>
+                    <td><input type="text" name="description" placeholder="Description" class="form-control"></td>  
+                </tr> 
+
+                <tr>  
+                    <td>: </td>
+                    <td><input class="btn login_btn" type="submit" value="create-task"></td>  
+                </tr>
+            </table>  
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+
+{% endblock content %}

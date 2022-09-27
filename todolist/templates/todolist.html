@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h5>Nama: </h5>
+<p>{{nama}}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tanggal Pembuatan</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+        </tr>
+    </thead>
+    
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    <tbody>
+        {% for item in todo_items %}
+            <tr>
+                <td>{{item.date}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock content %}
