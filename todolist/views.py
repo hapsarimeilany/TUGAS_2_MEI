@@ -1,3 +1,4 @@
+import datetime
 from http.client import HTTPResponse
 from multiprocessing import context
 from django.shortcuts import render
@@ -16,6 +17,7 @@ def show_todolist(request):
     todo_items = Task.objects.all()
     data = {
         'todo_items': todo_items,
+        'nama': 'Meilany'
     }
     return render(request, "todolist.html", data)
 
@@ -23,7 +25,7 @@ def create_task(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         description = request.POST.get('description')
-        tambah_todolist =  Task(user=request.user, title=title, description=description, date= datetime.now())
+        tambah_todolist = Task(user=request.user, title=title, description=description, date=datetime.datetime.now())
         tambah_todolist.save()
         return redirect('todolist:show_todolist')
     return render(request, 'create-task.html')
