@@ -15,7 +15,7 @@
     }
     
     tr:nth-child(even) {
-      background-color: #dddddd;
+      background-color: #6be6df;
     }
 
     .actions {
@@ -33,6 +33,9 @@
             <th>Tanggal Pembuatan</th>
             <th>Judul</th>
             <th>Deskripsi</th>
+            <th>Update Status</th>
+            <th>Button Update</th>
+            <th>Delete Task</th>
         </tr>
     </thead>
     
@@ -43,6 +46,9 @@
                 <td>{{item.date}}</td>
                 <td>{{item.title}}</td>
                 <td>{{item.description}}</td>
+                <td>{{item.is_finished}}</td> 
+                <td><button class="btn-ans"><a href="{% url 'todolist:updateStatusTask' item.id %}">Update</a></td>
+                <td><button class="btn-ans"><a href="{% url 'todolist:deleteTodo' item.id %}">Delete</a></button></td>
             </tr>
         {% endfor %}
     </tbody>

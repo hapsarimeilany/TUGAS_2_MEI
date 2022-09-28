@@ -9,14 +9,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect 
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 
 def show_todolist(request):
-    todo_items = Task.objects.all()
+    todo_items = Task.objects.filter(user=request.user)
     user = request.user
-    
+
     data = {
         'todo_items': todo_items,
         'nama': user
@@ -47,7 +48,6 @@ def register(request):
     return render(request, 'register.html', context)
 
 def login_user(request):
-    print("======= LOGIN =======")
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -62,4 +62,15 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('todolist:logout')
+    return redirect('todolist:login')
+
+def deleteTodo(request, i):
+    deleted_task = Task.objects.get(id=i)
+    deleted_task.delete()
+    return redirect("todolist:show_todolist")
+
+def updateStatusTask(request, i):
+    updated_task = Task.objects.get(id=i)
+    updated_task.is_finished = not updated_task.is_finished
+    updated_task.save()
+    return redirect("todolist:show_todolist")
