@@ -26,7 +26,6 @@
            date = models.DateField()
            title = models.TextField()
            description = models.TextField()
-           is_finished = models.BooleanField(default=False)
 
    4) Menjalankan perintah ```python manage.py makemigrations``` dan ```python manage.py migrate``` untuk menyiapkan dan menerapkan skema model yang telah dibuat ke dalam database Django lokal.
 
