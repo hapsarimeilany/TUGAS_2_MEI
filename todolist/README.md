@@ -156,7 +156,7 @@
     
     4) Import fungsi ```login_user``` di ke dalam ```urls.py``` pada folder ```todolist```
        ```
-       from wishlist.views import login_user
+       from todolist.views import login_user
        ```
     5) Tambahkan path url login ke dalam ```urlpatterns``` untuk mengakses fungsi yang sudah diimpor tadi
        ```
