@@ -131,3 +131,36 @@
        path('register/', register, name='register'),
        ....
        
+   D. Mengimplementasi Form Login
+
+    1) Membuat fungsi ```login_user``` di ```views.py``` pada folder ```todolist``` yang seperti berikut:
+       ```
+       def login_user(request):
+          if request.method == 'POST':
+              username = request.POST.get('username')
+              password = request.POST.get('password')
+              user = authenticate(request, username=username, password=password)
+              if user is not None:
+                  login(request, user)
+                  return redirect('todolist:show_todolist')
+              else:
+                  messages.info(request, 'Username atau Password salah!')
+         context = {}
+         return render(request, 'login.html', context)
+       ```
+    2) Tambahkan import ```authenticate``` dan ```login``` pada bagian paling atas
+       ```
+       from django.contrib.auth import authenticate, login
+       ```
+    3) Membuat berkas ```login.html``` pada folder ```templates``` aplikasi ```todolist```
+    
+    4) Import fungsi ```login_user``` di ke dalam ```urls.py``` pada folder ```todolist```
+       ```
+       from wishlist.views import login_user
+       ```
+    5) Tambahkan path url login ke dalam ```urlpatterns``` untuk mengakses fungsi yang sudah diimpor tadi
+       ```
+       ...
+       path('login/', login_user, name='login'), #sesuaikan dengan nama fungsi yang dibuat
+       ...
+       ```
