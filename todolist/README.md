@@ -339,3 +339,7 @@
        
       
 LINK APLIKASI TODOLIST HEROKU: http://mei-watchlist.herokuapp.com/todolist/login/?next=/todolist/ 
+
+   AKUN 1: meilanyhpsr (password: sukasuka)
+
+   AKUN 2: meilaaa (password: sukasuka)
