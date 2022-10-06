@@ -343,3 +343,144 @@ LINK APLIKASI TODOLIST HEROKU: http://mei-watchlist.herokuapp.com/todolist/login
    AKUN 1: meilanyhpsr (password: sukasuka)
 
    AKUN 2: meilaaa (password: sukasuka)
+   
+   
+                                                         ----- README TUGAS 5 -----
+   1. Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+
+   a. Inline CSS
+
+      Inline CSS merupakan kode CSS yang ditulis langsung pada atribut elemen HTML. Setiap elemennya memiliki atribut ```style``` yang merupakan tempat inline CSS ditulis.
+
+   Kelebihan: Lebih membantu ketika ingin melakukan perubahan hanya pada satu elemen, proses permintaan HTTP lebih kecil dan proses load website akan lebih cepat.
+
+    Kekurangan: Kurang efisien karena hanya bisa diterapkan pada satu elemen HTML.
+
+   b. Internal CSS
+   
+   Internal CSS merupakan kode CSS yang ditulis dalam tag ```<style>``` dan kode HTML dituliskan di header (bagian atas).
+
+   Kelebihan: Perubahan pada Internal CSS hanya berlaku pada satu halaman serta tidak perlu mengunggah beberapa file karena HTML dan CSS berada dalam satu file.
+
+   Kekurangan: Tidak efisien jika ingin menggunakan CSS yang sama dalam beberapa file. 
+
+   c. Eksternal CSS
+
+      Eksternal CSS merupakan kode CSS yang ditulis secara terpisah dengan kode HTML Eksternal. CSS ditulis di sebuah file khusus yang berekstensi ```.css```. File eksternal CSS biasanya diletakkan setelah bagian ```<head>```pada halaman.
+
+     Kelebihan: Ukuran file html menjadi lebih kecil dan struktur dari kode HTML lebih rapi, loading website lebih cepat, serta file css dapat digunakanuntuk lebih dari satu halaman website;.
+
+   Kelemahan: Halaman akan menjadi berantakan saat file CSS gagal dipanggil oleh file HTML.
+ 
+2. Jelaskan tag HTML5 yang kamu ketahui!
+
+    - ```<!DOCTYPE>``` : untuk menentukan tipe dokumen
+    - ```<html>```  : untuk membuat sebuah dokumen HTML
+    - ```<title>``` : untuk membuat judul dari sebuah halaman
+    - ```<body>``` : untuk membuat tubuh dari sebuah halaman
+    - ```<h1> to <h6> ```: untuk membuat heading
+    - ```<p>``` : untuk membuat paragraf
+    - ```<br>``` : untuk memasukkan satu baris putus
+    - ```<!--...-->``` : untuk membuat komentar
+    - ```<html>``` : Tag untuk membuat dokumen HTML
+    - ```<a>``` : untuk membuat hyperlink
+    - ```<link>``` : untuk menghubungkan suatu dokumen dengan htmlnya
+    - ```<table>``` : untuk membuat tabel
+    - ```<th>``` : untuk membuat sebuah sel header tabel
+    - ```<tr>``` : untuk membuat baris dalam sebuah tabel
+    - ```<td>``` : untuk membuat sel dalam sebuah tabel
+    - ```<style>``` : untuk membuat informasi style untuk dokumen
+    - ```<div>```  : untuk membuat sebuah bagian dalam dokumen
+    - ```<form>``` : untuk membuat form untuk meminta input dari user
+    - ```<input>``` : untuk menunjukkan sebuah inputan berdasarkan tipe
+
+
+3. Jelaskan tipe-tipe CSS selector yang kamu ketahui!
+   
+   - ID selector : cara menggunakan ID selector adalah dengan menambahkan beberapa ID pada tag html dan juga menambahkan ID selector pada file CSS maupun internal CSS dengan penulisan ```#namaID {...}```
+
+    - Class selector : cara menggunakan class selector adalah dengan menambahkan beberapa class pada tag html dan juga menambahkan class selector pada file CSS maupun internal CSS dengan penulisan ```.namaClass {...}```
+
+   - Element selector : cara menggunakan element selector adalah dengan memanfaatkan tag html sebagai selector untuk mengubah properti yang ada pada tag itu sendiri. Misalnya h1, p, h2, h3, dst. Contohnya ```h1{...}```
+ 
+
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas!
+
+   A. Halaman Login
+
+      - Mengubah warna background halaman sesuai keinginan dengan menambahkan kode berikut di antara ```{% block meta %}``` dan ```{% endblock meta %}```
+
+        ```
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background:  linear-gradient(to bottom,#c24eaf, #7982e6);
+                height: 100vh;
+            }
+        </style>
+        ```
+      - Memposisikan semua element di halaman ```login.html``` di tengah menggunakan ```<div class = "login text-center">``` di bagian terluar ```{% block content %}```
+
+      - Membungkus login table dalam ```card``` dengan menambahkan ```<div class="card p-3 mb-2 bg-ligth text-light shadow-lg p-3 mb-5 bg-body rounded position-absolute top-50 start-50 translate-middle" style="width: 25rem;">```
+
+      - Memberi warna card tersebut di dalam block ```<style>``` dan mengatur warna-warna element di dalamnya
+
+     - Mengubah tampilan button ```login``` menggunakan style ```btn-outline-light```
+
+      B. Halaman Register
+
+     - Memposisikan semua element di halaman ```register.html``` di tengah menggunakan ```<div class = "login text-center">``` di bagian terluar ```{% block content %}```
+      
+     - Membungkus register form dalam ```card``` yang mengandung text berwarna putih dengan menambahkan ```<div class="card p-3 mb-2 bg-ligth text-light shadow-lg p-3 mb-5 bg-body rounded position-absolute top-50 start-50 translate-middle" style="width: 40rem;">```
+
+   C. Halaman Todolist
+
+   - Membuat card untuk masing-masing task yang ada di dalam halaman todolist dengan menambahkan ```<div class="card p-3 mb-2 bg-ligth text-dark shadow-lg p-3 mb-5 bg-body rounded" style="width: 15rem; height: 15rem;">``` dan ```<div class="card-body">``` di dalam iterasi ```{% for item in todo_items %}```
+
+   - Menambahkan ```<div class="row row-cols-1 row-cols-md-4 g-4">``` sebelum block iterasi ```{% for item in todo_items %}``` untuk mengatur baris dan kolom
+
+   - Mengatur elemen-elemen di dalamnya (warna teks, button hapus dan update, jenis teks, dll)
+
+   - Membuat ```navbar``` yang mengandung ```(username)'s Tasks```, ```login``` button, dan ```create task``` button serta mengatur warnanya di dalam block ```<style>```
+    
+     ```
+     <nav class="navbar navbar-expand-lg bg-secondary">
+        <div class="container-fluid">
+           <div class="navbar-header">
+               <style type="text/css">
+                    .navbar {
+                    background: #5f2c82;
+                    background: -webkit-linear-gradient(to right, #6296b4ab, #624079);
+                    background: linear-gradient(to right,  #6296b4ab, #624079);
+                    }
+
+                   .color-me {
+                    color: whitesmoke;
+                   }
+
+               </style>
+               <a class="navbar-brand text-white">
+               <img src="https://img.icons8.com/external-soft-fill-juicy-fish/2x/external-task-business-management-soft-fill-soft-fill-juicy-fish-2.png" height="28" alt="" />
+               <span class="color-me">{{nama}}'s Tasks</span> 
+               </a>
+               </div>
+
+               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <a class="btn btn-outline-light me-md-2" href="{% url 'todolist:buat-task' %}" role="button">✍️ Create Task</a>
+                  <a class="btn btn-outline-light" href="{% url 'todolist:logout' %}" role="button">Logout</a> 
+             </div>      
+         </div>
+     </nav>
+     ```
+
+   D. Halaman Create Task
+
+   - Memposisikan semua element di halaman ```create-task.html``` di tengah menggunakan ```<div class = "create-task text-center">``` di bagian terluar ```{% block content %}```
+
+   - Membungkus create-task form dalam ```card``` yang mengandung text berwarna putih dengan menambahkan ```<div class="card p-3 mb-2 bg-ligth text-light shadow-lg p-3 mb-5 bg-body rounded position-absolute top-50 start-50 translate-middle" style="width: 40rem; height: 15rem;">``` dan ```<div class="card-body">``` serta mengatur warna card di dalam block ```<style>```
+               
+
+
+       
+        
+
