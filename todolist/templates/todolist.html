@@ -72,13 +72,6 @@
             <p><a href="{% url 'todolist:updateStatusTask' item.id %}">✅</a>Update
                 <a href="{% url 'todolist:deleteTodo' item.id %}">🗑️</a>Delete
             </p>
-            
-            <!-- <style>
-                .card {
-                background: linear-gradient(to bottom, #615966, #614e58 ) ;
-                }
-            </style> -->
-            
         </div>
     </div>   
 </div>
@@ -87,7 +80,3 @@
 </div>
 
 {% endblock content %}
-
-                            <td>{{item.is_finished}}</td>  --> -->
-                            <!-- <td></td>
-                            <td><button class="btn-ans"><a href="{% url 'todolist:deleteTodo' item.id %}">Delete</a></button></td> -->
