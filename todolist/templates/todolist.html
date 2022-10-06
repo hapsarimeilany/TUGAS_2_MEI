@@ -9,55 +9,85 @@
     }
     
     td, th {
-      border: 1px solid #8ef1ed;
-      text-align: left;
+      border: 1px solid #01e4f8;
+      text-align: center;
       padding: 8px;
     }
     
-    tr:nth-child(even) {
-      background-color: #ffffff;
+    tr {
+      background-color: #ffffff54;
     }
 
     .actions {
         margin-top: 20px;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background:  linear-gradient(to bottom,  #c24eaf, #7982e6);
+        height: 100vh;
     }
 </style>
     
 {% endblock meta %}
 
 {% block content %}
-<h3>username: {{nama}}</h3>
+<nav class="navbar navbar-expand-lg bg-secondary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <style type="text/css">
+                .navbar {
+                    background: #5f2c82;
+                    background: -webkit-linear-gradient(to right, #6296b4ab, #624079);
+                    background: linear-gradient(to right,  #6296b4ab, #624079);
+                }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Tanggal Pembuatan</th>
-            <th>Judul</th>
-            <th>Deskripsi</th>
-            <th>Update Status</th>
-            <th>Button Update</th>
-            <th>Delete Task</th>
-        </tr>
-    </thead>
-    
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    <tbody>
-        {% for item in todo_items %}
-            <tr>
-                <td>{{item.date}}</td>
-                <td>{{item.title}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.is_finished}}</td> 
-                <td><button class="btn-ans"><a href="{% url 'todolist:updateStatusTask' item.id %}">Update</a></td>
-                <td><button class="btn-ans"><a href="{% url 'todolist:deleteTodo' item.id %}">Delete</a></button></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                .color-me {
+                    color: whitesmoke;
+                }
 
-<div class="actions">
-    <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-    <button><a href="{% url 'todolist:buat-task' %}">Create Task</a></button>
+            </style>
+            <a class="navbar-brand text-white">
+                <img src="https://img.icons8.com/external-soft-fill-juicy-fish/2x/external-task-business-management-soft-fill-soft-fill-juicy-fish-2.png" height="28" alt="" />
+                <span class="color-me">{{nama}}'s Tasks</span> 
+            </a>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-outline-light me-md-2" href="{% url 'todolist:buat-task' %}" role="button">✍️ Create Task</a>
+            <a class="btn btn-outline-light" href="{% url 'todolist:logout' %}" role="button">Logout</a> 
+        </div>      
+    </div>
+</nav>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+{% for item in todo_items %}
+<div class="col">
+    <div class="card p-3 mb-2 bg-ligth text-dark shadow-lg p-3 mb-5 bg-body rounded" style="width: 15rem; height: 15rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.date}}</h6>
+            <p class="card-text tex-truncate">{{item.description}}</h6>
+            <p>Status: {{item.is_finished}}</p>
+            <p><a href="{% url 'todolist:updateStatusTask' item.id %}">✅</a>Update
+                <a href="{% url 'todolist:deleteTodo' item.id %}">🗑️</a>Delete
+            </p>
+            
+            <!-- <style>
+                .card {
+                background: linear-gradient(to bottom, #615966, #614e58 ) ;
+                }
+            </style> -->
+            
+        </div>
+    </div>   
+</div>
+
+{% endfor %}
 </div>
 
 {% endblock content %}
+
+                            <td>{{item.is_finished}}</td>  --> -->
+                            <!-- <td></td>
+                            <td><button class="btn-ans"><a href="{% url 'todolist:deleteTodo' item.id %}">Delete</a></button></td> -->

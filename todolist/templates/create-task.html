@@ -1,24 +1,45 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background:  linear-gradient(to bottom,#c24eaf, #7982e6);
+        height: 100vh;
+    }
+</style>
+{% endblock meta %}
+
 {% block content %}  
 
-<div class = "create-task">
+<div class = "create-task text-center">
     <h3>Let's Create Your New Task!</h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="title">Task: </label>
-            <input id="title" type="text" name="title" placeholder="Write your task here" required>
-        </div>
+    <div class="card p-3 mb-2 bg-ligth text-light shadow-lg p-3 mb-5 bg-body rounded position-absolute top-50 start-50 translate-middle" style="width: 40rem; height: 15rem;">
+        <div class="card-body">
+            <style>
+                .card {
+                    background: linear-gradient(to bottom,#4e286d, #121216) ;
+                }
+            </style>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        Task:
+                        <input type="text" name="title" placeholder=" Write your task here" class="form-control" required>
+                    </tr>
+               
+                    <tr>
+                        Description:
+                        <input type="text" name="description" placeholder="Describe your task here" class="form-control" required>
+                    </tr>
 
-        <p></p>
-        <div>
-            <label for="description">Description: </label>
-            <input id="description" type="text" name="description" placeholder="Describe your task here" required>
-        </div>
+                    <p></p>
+                    <input type="submit" value="Tambahkan Task Baru">
+                </table>
 
-        <p></p>
-        <input type="submit" value="Tambahkan Task Baru">
-    </form>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock content %}

@@ -1,45 +1,62 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Login</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background:  linear-gradient(to bottom,#c24eaf, #7982e6);
+        height: 100vh;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<div class = "login text-center">
 
-    <h1>Login</h1>
+    <h1>Make Your TodoList</h1>
+    <h1>Make Your Day</h1>
+                
+    <div class="card p-3 mb-2 bg-ligth text-light shadow-lg p-3 mb-5 bg-body rounded position-absolute top-50 start-50 translate-middle" style="width: 25rem;">
+        <div class="card-body">
+            <style>
+                .card {
+                    background: linear-gradient(to bottom, #4e286d, #121216 ) ;
+                }
+            </style>
+            <h4>Welcome, please login!</h4>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        Username
+                        <input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                            
+                    <tr>
+                        Password 
+                        <input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
+                    <tr>
+                        <td></td>
+                        <h1></h1>
+                        <tr><input class="btn btn-outline-light btn-sm" type="submit" value="Login"></tr>
+                    </tr>
+                </table>
+            </form>
         
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
-
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}     
+                
+            Belum punya akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
