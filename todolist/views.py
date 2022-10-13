@@ -9,7 +9,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect 
+from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, HttpResponseRedirect 
+from django.core import serializers
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -64,13 +65,32 @@ def logout_user(request):
     logout(request)
     return redirect('todolist:login')
 
-def deleteTodo(request, i):
-    deleted_task = Task.objects.get(id=i)
+def deleteTodo(request, taskId):
+    deleted_task = Task.objects.get(id=taskId)
     deleted_task.delete()
     return redirect("todolist:show_todolist")
 
-def updateStatusTask(request, i):
-    updated_task = Task.objects.get(id=i)
+def updateStatusTask(request, taskId):
+    updated_task = Task.objects.get(id=taskId)
     updated_task.is_finished = not updated_task.is_finished
     updated_task.save()
     return redirect("todolist:show_todolist")
+
+def get_todolist_json(request):
+    data = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', data), content_type='application/json')
+
+def create_task_modal(request):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        new_todolist = Task(
+            user=request.user,
+            title=title,
+            description=description,
+            date=datetime.datetime.now()
+        )
+        new_todolist.save()
+        return redirect('todolist:show_todolist')
+    return render(request, 'create_task.html')

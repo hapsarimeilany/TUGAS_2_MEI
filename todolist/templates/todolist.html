@@ -54,29 +54,157 @@
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-outline-light me-md-2" href="{% url 'todolist:buat-task' %}" role="button">✍️ Create Task</a>
+            <button class="create-task btn btn-outline-light me-md-2" role="button">✍️ Create Task</button>
             <a class="btn btn-outline-light" href="{% url 'todolist:logout' %}" role="button">Logout</a> 
-        </div>      
+        </div>
     </div>
 </nav>
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
-{% for item in todo_items %}
-<div class="col">
-    <div class="card p-3 mb-2 bg-ligth text-dark shadow-lg p-3 mb-5 bg-body rounded" style="width: 15rem; height: 15rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{item.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{item.date}}</h6>
-            <p class="card-text tex-truncate">{{item.description}}</h6>
-            <p>Status: {{item.is_finished}}</p>
-            <p><a href="{% url 'todolist:updateStatusTask' item.id %}">✅</a>Update
-                <a href="{% url 'todolist:deleteTodo' item.id %}">🗑️</a>Delete
-            </p>
+<div id="tasks" class="row row-cols-1 row-cols-md-4 g-4"> </div>
+
+<!-- MODAL SECTION -->
+<div class="modal" data-mdb-backdrop="true" data-mdb-keyboard="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" id="addForm" action="">
+                    {% csrf_token %}
+                    <table class="d-flex justify-content-center">
+                        <div class="form-outline form-white mb-4">
+                            <label class="form-label">Title</label>
+                            <input placeholder="Masukkan judul" class="title form-control" required>
+                        </div>
+
+                        <div class="form-outline form-white mb-4">
+                            <label class="form-label">Description</label>
+                            <input placeholder="Deskripsi task" class="description form-control" required>
+                        </div>
+
+                        <button class="btn-save btn btn-primary" type="submit">Create</button>
+                    </table>
+                </form>
+            </div>
         </div>
-    </div>   
+    </div>
 </div>
 
-{% endfor %}
-</div>
+<script>
+
+    // get data dengan menggunakan jquery AJAX 
+    $(document).ready( function() {
+        async function getTodolist() {
+            return fetch("{% url 'todolist:get_todolist_json' %}")
+                .then(response => response.json())
+                .then(todolist => {
+                    return todolist;
+                })
+                .catch(error => {
+                    console.error("ERROR:", error);
+                })
+        }
+
+        getTodolist().then(todolist => {
+            let todosHTML = "";
+
+            for (let i = 0; i < todolist.length; i++) {
+                const card = `
+                    <div class="col">
+                        <div class="card p-3 mb-2 bg-ligth text-dark shadow-lg p-3 mb-5 bg-body rounded" style="width: 15rem; height: 15rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">${todolist[i].fields.title}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${todolist[i].fields.date}</h6>
+                                <p class="card-text tex-truncate">${todolist[i].fields.description}</h6>
+                                <p>Status: ${todolist[i].fields.is_finished}</p>
+
+                                <div>
+                                    <a href="/todolist/updateStatusTask/${todolist[i].pk}">✅</a>Update
+                                    <a href="/todolist/deleteTodo/${todolist[i].pk}">🗑️</a>Delete
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                `;
+                todosHTML += card;
+            }
+            document.getElementById("tasks").innerHTML = todosHTML;
+        }); 
+    });
+
+    // handle create task button
+    $('.create-task').click( function() {
+        $('.modal').toggle();
+    });
+
+    // button close modal handler
+    $('.btn-close').click( function() {
+        $('.modal').toggle();
+    })
+
+    // POST form menggunakan ajax
+    $('.btn-save').click(function() {
+
+        // Get values dari elemen di halamanan form:
+        let title = $('.title').val();
+        let description = $('.description').val();
+        let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
+        
+
+        // Kirim data yang diperoleh dengan POST
+        $.post( '/todolist/add/', {title: title, description: description, csrfmiddlewaretoken: CSRFtoken});
+
+        // Load data dengan ajax untuk nampilin task baru yang baru dibuat
+        async function getTodolist() {
+            return fetch("{% url 'todolist:get_todolist_json' %}")
+                .then(response => response.json())
+                .then(todolist => {
+                    return todolist;
+                })
+                .catch(error => {
+                    console.error("ERROR:", error);
+                })
+        }
+
+        getTodolist().then(todolist => {
+        let todosHTML = "";
+
+        for (let i = 0; i < todolist.length; i++) {
+            const card = `
+                <div class="col">
+                    <div class="card p-3 mb-2 bg-ligth text-dark shadow-lg p-3 mb-5 bg-body rounded" style="width: 15rem; height: 15rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${todolist[i].fields.title}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${todolist[i].fields.date}</h6>
+                            <p class="card-text tex-truncate">${todolist[i].fields.description}</h6>
+                            <p>Status: ${todolist[i].fields.is_finished}</p>
+
+                            <div>
+                                <a href="/todolist/updateStatusTask/${todolist[i].pk}">✅</a>Update
+                                <a href="/todolist/deleteTodo/${todolist[i].pk}">🗑️</a>Delete
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            `;
+            todosHTML += card;
+        }
+        document.getElementById("tasks").innerHTML = todosHTML;
+        }); 
+        $('.title').empty();
+        $('.description').empty();
+        $('.modal').toggle();
+        })
+
+    // Mencegah pengiriman ulang form
+    if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+    }
+
+</script>
 
 {% endblock content %}
